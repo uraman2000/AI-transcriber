@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { Toaster } from "sonner";
 import { useTranscribeMutation } from "./api/transcriptionApi";
 import RecordView from "./components/RecordView";
