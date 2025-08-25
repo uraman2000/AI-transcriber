@@ -12,13 +12,15 @@ import type { Transcription } from "@/api/supabase/transcription.type";
 interface TranscribeViewI {
   data: Transcription;
   isOnEditView?: boolean;
-  Trigger: () => React.ReactNode;
+  Trigger?: () => React.ReactNode;
+  autoOpen?: boolean;
 }
 
 export default function TranscribeView({
   data,
   isOnEditView = false,
   Trigger,
+  autoOpen = false,
 }: TranscribeViewI) {
   const [
     createTranscription,
@@ -35,6 +37,8 @@ export default function TranscribeView({
 
   const closeModal = () => {
     setIsOpen(false);
+    setIsEdit(false);
+    setTranscriptText(data.ciphertext);
   };
 
   useEffect(() => {
@@ -44,6 +48,12 @@ export default function TranscribeView({
       );
     }
   }, [isCreateSuccess, isUpdateSuccess]);
+
+  useEffect(() => {
+    if (autoOpen && data && data.ciphertext) {
+      setIsOpen(true);
+    }
+  }, [autoOpen, data]);
 
   const handleSave = () => {
     if (!isEdit) return closeModal();
@@ -66,13 +76,11 @@ export default function TranscribeView({
         />
       );
     }
-    return <p className="break-all whitespace-normal">{data.ciphertext}</p>;
+    return <p className="whitespace-pre-wrap">{data.ciphertext}</p>;
   };
   return (
     <>
-      <div onClick={() => setIsOpen(true)}>
-        <Trigger />
-      </div>
+      <div onClick={() => setIsOpen(true)}>{Trigger && <Trigger />}</div>
       {isOpen && (
         <ModalPaper
           title={isEdit ? "Edit Transcription" : "View Transcribe"}

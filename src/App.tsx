@@ -5,17 +5,7 @@ import RecordView from "./components/RecordView";
 import TranscribeList from "./components/TranscribeList";
 
 export default function App() {
-  const [transcribe, { data }] = useTranscribeMutation();
-
-  useEffect(() => {
-    if (data) {
-      console.log("Transcription result:", data);
-    }
-
-    return () => {
-      console.log("Cleanup");
-    };
-  }, [data]);
+  const [transcribe] = useTranscribeMutation();
 
   const handleTranscription = useCallback(
     (url: string) => {
@@ -29,7 +19,16 @@ export default function App() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center p-4">
       <RecordView onMediaBlobUrl={(url) => handleTranscription(url)} />
-      {/* <TranscribeView data={data} Trigger={() => <button>Open</button>} /> */}
+
+      {/* <TranscribeView
+        data={{
+          ciphertext: "test",
+          created_at: "2021-01-01",
+        }}
+     
+        autoOpen={true}
+      /> */}
+
       <Toaster position="top-right" />
       <TranscribeList />
     </div>

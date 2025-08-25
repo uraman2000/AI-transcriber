@@ -66,12 +66,10 @@ export default function TranscribeList() {
               {data &&
                 data.map((item) => (
                   <TranscribeView
+                    key={item.id}
                     data={item}
                     Trigger={() => (
-                      <li
-                        key={item.id}
-                        className="hover:bg-gray-50 rounded cursor-pointer p-2"
-                      >
+                      <li className="hover:bg-gray-50 rounded cursor-pointer p-2">
                         <div className="flex justify-between items-center mb-2">
                           <div className="w-3/4">
                             <p className="line-clamp-1">{item.ciphertext}</p>

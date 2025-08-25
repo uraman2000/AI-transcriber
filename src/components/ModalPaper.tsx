@@ -19,7 +19,7 @@ function ModalPaper({
 }: ModalPaperI) {
   return (
     <div className="fixed inset-0 bg-black/50  flex items-center justify-center h-full rounded-md">
-      <div className="w-3/4 md:w-2/4 bg-white shadow-2xl rounded-sm flex flex-col p-4">
+      <div className="w-3/4 md:w-2/4 bg-white shadow-2xl rounded-sm flex flex-col p-4 max-h-3/4 overflow-y-auto">
         <header className="flex">
           <h2 className="text-lg font-semibold">{title}</h2>
           <Button variant="ghost" className="ml-auto" onClick={onClose}>

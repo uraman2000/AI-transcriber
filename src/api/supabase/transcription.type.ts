@@ -1,7 +1,5 @@
 export type Transcription = {
-  id: string;
-  user_id: string;
-  created_at: string;
-  updated_at: string;
+  id?: string;
   ciphertext: string;
+  created_at: string;
 };
