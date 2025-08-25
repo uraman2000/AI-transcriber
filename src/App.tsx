@@ -1,9 +1,8 @@
 import { useCallback, useEffect } from "react";
+import { Toaster } from "sonner";
 import { useTranscribeMutation } from "./api/transcriptionApi";
 import RecordView from "./components/RecordView";
-import TranscribeView from "./components/TranscribeView";
 import TranscribeList from "./components/TranscribeList";
-import { Toaster } from "sonner";
 
 export default function App() {
   const [transcribe, { data }] = useTranscribeMutation();
